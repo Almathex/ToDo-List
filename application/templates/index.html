@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block body_content %}
+    <br>
+    <br>
+    You have completed {{ totals['total_completed'] }} tasks.
+    <br>
+    <br>
+    You still have {{ totals['total_not_completed'] }} tasks left to complete.
+    <br>
+    <br>
+    There are a total of{{ totals['total'] }} tasks.
+
+    {% if totals['total'] == 0 %}
+       
+        <h3>Make some tasks</h3>
+    
+    {% elif totals['total_completed'] == totals['total'] %}
+
+        <h3>All complete, well done!</h3>
+    
+    {% elif totals['total_completed'] <= totals['total'] - 3 %}
+
+        <h3>You have {{ totals['total_not_completed'] }} incomplete tasks</h3>
+
+    {% endif %}
+
+    <div>
+        <form action="{{ url_for('index') }}" method='POST'>
+            {{ form.order_with }}
+            {{ form.submit }}
+        </form>
+        {% for todo in todos %}
+
+            {{ todo.task }}
+            {% if todo.complete == True %}
+                &#9989
+                <form action='{{ url_for('incomplete', id=todo.id) }}'>
+                <input type=submit value="Not Complete">
+                </form>
+            {% else %}
+                <form action='{{ url_for('complete', id=todo.id) }}'>
+                <input type=submit value="Complete">
+                </form>
+            {% endif %}
+            <form action='{{ url_for('update', id=todo.id) }}'>
+            <input type=submit value="Edit">
+            </form>
+            <form action='{{ url_for('delete', id=todo.id) }}'>
+            <input type=submit value="Remove">
+            </form>
+            <br>
+
+        {% endfor %}
+    <div>
+{% endblock body_content %}
