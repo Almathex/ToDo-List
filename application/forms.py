@@ -22,10 +22,10 @@ class TodoForm(FlaskForm):
 class OrderTodo(FlaskForm):
     order_with = SelectField('Order With:',
         choices=[
-            ("complete", "Completed"),
+            ("complete", "Done"),
             ("id", "Newest"),
             ("old", "Oldest"),
             ('incomplete', "Not completed")
         ]
     )
-    submit = SubmitField('Confirm')
+    submit = SubmitField('Order by')
