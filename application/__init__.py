@@ -4,7 +4,7 @@ from os import getenv
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:password1234@35.242.150.126/todo" 
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:password1234@35.197.211.81/todo" 
 app.config['SECRET_KEY'] = "the-secret"
 
 db = SQLAlchemy(app)
