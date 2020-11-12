@@ -2,25 +2,25 @@
 {% block body_content %}
     <br>
     <br>
-    There are {{ totals['total_walls'] }} walls
+    There are {{ totals['total_incomplete'] }} incomplete
     <br>
     <br>
-    In {{ totals['total_loctaions'] }} loctaions
+    In {{ totals['total_complete'] }} complete
     <br>
     <br>
     There are a total of {{ totals['total'] }} tasks.
 
-    {% if totals['total_walls'] == 0 %}
+    {% if totals['total'] == 0 %}
        
         <h3>Add some walls</h3>
     
-    {% elif totals['total_walls'] < 10 %}
+    {% elif totals['total'] < 10 %}
 
-        <h3>You can get 10 walls </h3>
+        <h3>You can get 10 task </h3>
     
-    {% elif totals['total_completed'] >= 10 %}
+    {% elif totals['total'] >= 10 %}
 
-        <h3>That's alot of walls</h3>
+        <h3>That's alot of tasks</h3>
 
     {% endif %}
     <div>
