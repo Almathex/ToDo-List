@@ -8,8 +8,8 @@ def index():
     form = OrderTodo()
     totals = {
         "total": Todos.query.count(),
-        "total_completed": Todos.query.filter_by(complete=True).count()
-        "total_not_completed" Todos.query.filter_by(complete=False).count()
+        "total_completed": Todos.query.filter_by(complete=True).count(),
+        "total_not_completed": Todos.query.filter_by(complete=False).count()
     }
     if form.order_with.data == "id":
         todos = Todos.query.order_by(Todos.id.desc()).all()

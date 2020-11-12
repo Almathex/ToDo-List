@@ -8,7 +8,7 @@
     In {{ totals['total_loctaions'] }} loctaions
     <br>
     <br>
-    With {{ totals['total_activities'] }} activities
+    There are a total of {{ totals['total'] }} tasks.
 
     {% if totals['total_walls'] == 0 %}
        
@@ -23,5 +23,34 @@
         <h3>That's alot of walls</h3>
 
     {% endif %}
+    <div>
+        <form action="{{ url_for('index') }}" method='POST'>
+            {{ form.order_with }}
+            {{ form.submit }}
+        </form>
+        {% for todo in todos %}
 
+            {{ todo.task }}
+            {% if todo.complete == True %}
+                &#9989
+                <form action='{{ url_for('incomplete', id=todo.id) }}'>
+                <input type=submit value="Click to mark as not Completed">
+                </form>
+            {% else %}
+	    	&#10060
+                <form action='{{ url_for('complete', id=todo.id) }}'>
+                <input type=submit value="Click to mark as Complete">
+                </form>
+            {% endif %}
+            <form action='{{ url_for('update', id=todo.id) }}'>
+            <input type=submit value="Edit">
+            </form>
+            <form action='{{ url_for('delete', id=todo.id) }}'>
+            <input type=submit value="Remove">
+            </form>
+            <br>
+
+        {% endfor %}
+    <div>
 {% endblock body_content %}
+
