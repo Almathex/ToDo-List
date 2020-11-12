@@ -5,7 +5,7 @@ from os import getenv
 app = Flask(__name__)
 
 app.config['DBI_URI'] = getenv('DBI_URI') 
-app.config['SECRET_KEY'] = "a-secret-key"
+app.config['SECRET_KEY'] = getenv('SECRET_KEY')
 
 db = SQLAlchemy(app)
 
